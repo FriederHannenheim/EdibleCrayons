@@ -14,5 +14,7 @@
   "item.ediblecrayons.light_blue_crayon": "Light Blue Crayon",
   "item.ediblecrayons.magenta_crayon": "Magenta Crayon",
   "item.ediblecrayons.orange_crayon": "Orange Crayon",
-  "item.ediblecrayons.white_crayon": "White Crayon"
+  "item.ediblecrayons.white_crayon": "White Crayon",
+
+  "itemGroup.crayons": "Crayons"
 }
