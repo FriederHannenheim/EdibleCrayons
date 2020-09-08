@@ -30,20 +30,19 @@ public class EdibleCrayons
 
         MinecraftForge.EVENT_BUS.register(this);
     }
+    @SubscribeEvent
+    public static void registerItems(final RegistryEvent.Register<Item> event){
+        IForgeRegistry<Item> registry = event.getRegistry();
+        Item.Properties properties = new Item.Properties()
+                    .group(CrayonItemGroup.instance)
+                    .food(new Food.Builder().saturation(10).hunger(10).build());
 
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void registerItems(final RegistryEvent.Register<Item> event){
-            for(DyeColor color : DyeColor.values()){
-                event.getRegistry().register(new Item(new Item.Properties()
-                        .group(CrayonItemGroup.instance)
-                        .food(new Food.Builder().saturation(10).hunger(10).build())
-                ).setRegistryName(color.getTranslationKey()+"_crayon"));
-            }
-
+        for(DyeColor color : DyeColor.values()){
+            registry.register(new Item(properties))
+                .setRegistryName(color.getTranslationKey()+"_crayon"));
         }
     }
+
     public static class CrayonItemGroup extends ItemGroup{
         public static final CrayonItemGroup instance = new CrayonItemGroup(ItemGroup.GROUPS.length,"crayons");
         private CrayonItemGroup(int index, String label){
